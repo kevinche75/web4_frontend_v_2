@@ -4,7 +4,14 @@ const initialState = {
     x: null,
     y: null,
     r: 0,
-    table: [],
+    table: [
+        {
+            x: 2,
+            y: 3,
+            r: 1,
+            hit: true
+        }
+    ],
     messageX: "",
     messageY: "",
     messageR: "",

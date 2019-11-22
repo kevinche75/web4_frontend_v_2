@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Header} from "../components/header";
 import MyForm from "./form";
+import Canvas from "./canvas";
+import {MyTable} from "../components/table";
 
 class SecondPage extends Component {
     render() {
-        const {user, page, header} = this.props;
+        const {header, page} = this.props;
         return (
             <div className="secondPage">
                 <Header
@@ -15,6 +17,8 @@ class SecondPage extends Component {
                     variant={header.variant}
                     topic={header.topic}/>
                 <MyForm/>
+                <Canvas/>
+                <MyTable table={page.table}/>
             </div>
         )
     };
@@ -22,9 +26,8 @@ class SecondPage extends Component {
 
 const mapStateToProps = store => {
     return {
-        user: store.user,
-        page: store.page,
-        header: store.header
+        header: store.header,
+        page: store.page
     }
 }
 

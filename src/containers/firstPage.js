@@ -5,7 +5,7 @@ import { User} from "./user";
 
 class FirstPage extends Component {
   render() {
-      const {user, page, header} = this.props;
+      const {user, header} = this.props;
       return (
           <div className="firstPage">
               <Header
@@ -23,7 +23,6 @@ class FirstPage extends Component {
 const mapStateToProps = store => {
     return {
         user: store.user,
-        page: store.page,
         header: store.header
     }
 }

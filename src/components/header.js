@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 export class Header extends React.Component{
     render() {
@@ -23,10 +22,3 @@ export class Header extends React.Component{
     }
 }
 
-Header.propTypes = {
-    firstName: PropTypes.string.isRequired,
-    secondName: PropTypes.string.isRequired,
-    patronymicName: PropTypes.string.isRequired,
-    variant: PropTypes.number.isRequired,
-    topic: PropTypes.string.isRequired
-}
