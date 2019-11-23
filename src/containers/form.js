@@ -41,11 +41,13 @@ class MyForm extends Component {
             flag = false;
         }
         let y = this.props.page.y;
+        console.log(y);
         if(y=="" || y===null){
             this.props.setMessageY("You should set Y");
             flag = false;
         } else {
             if(!/^(-?\d+)([.,]\d+)?$/.test(y)) {
+                this.props.setMessageY("Y should be a number");
             } else {
                 y = y.replace(',','.');
                 y = Number(y);
@@ -62,52 +64,52 @@ class MyForm extends Component {
         //TODO отправка на сервер
     }
     render() {
-        const {page} = this.props;
+        const {page,style} = this.props;
         return (
-            <div className="form">
-                <Panel>
+            <div className="form" style={style.style.myForm.main}>
+                <Panel style={style.style.myForm.mainPanel}>
                     <Panel>
                         Choose X:
                         <br/>
-                        <Button type={"button"} label="-4" onClick={this.handleClickX} value={-4}/>
-                        <Button type={"button"} label="-3" onClick={this.handleClickX} value={-3}/>
-                        <Button type={"button"} label="-2" onClick={this.handleClickX} value={-2}/>
-                        <Button type={"button"} label="-1" onClick={this.handleClickX} value={-1}/>
-                        <Button type={"button"} label="0" onClick={this.handleClickX} value={0}/>
-                        <Button type={"button"} label="1" onClick={this.handleClickX} value={1}/>
-                        <Button type={"button"} label="2" onClick={this.handleClickX} value={2}/>
-                        <Button type={"button"} label="3" onClick={this.handleClickX} value={3}/>
-                        <Button type={"button"} label="4" onClick={this.handleClickX} value={4}/>
-                        <div className={"messageX"}>
+                        <Button type={"button"} label="-4" onClick={this.handleClickX} value={-4} style={page.x==-4 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="-3" onClick={this.handleClickX} value={-3} style={page.x==-3 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="-2" onClick={this.handleClickX} value={-2} style={page.x==-2 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="-1" onClick={this.handleClickX} value={-1} style={page.x==-1 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="0" onClick={this.handleClickX} value={0} style={page.x==0 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="1" onClick={this.handleClickX} value={1} style={page.x==1 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="2" onClick={this.handleClickX} value={2} style={page.x==2 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="3" onClick={this.handleClickX} value={3} style={page.x==3 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="4" onClick={this.handleClickX} value={4} style={page.x==4 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <div className={"messageX"} style={style.style.myComponents.message}>
                             {page.messageX==="" ? <br/> : page.messageX}
                         </div>
                     </Panel>
                     <Panel>
                         Set Y(-5;3):
                         <br/>
-                        <Input onChange={this.handleChangeY} maxlength={14}/>
-                        <div className={"messageY"}>
+                        <Input onChange={this.handleChangeY} maxlength={14} style={style.style.myComponents.input}/>
+                        <div className={"messageY"} style={style.style.myComponents.message}>
                             {page.messageY==="" ? <br/> : page.messageY}
                         </div>
                     </Panel>
                     <Panel>
                         Choose R:
                         <br/>
-                        <Button type={"button"} label="-4" onClick={this.handleClickR} value={-4}/>
-                        <Button type={"button"} label="-3" onClick={this.handleClickR} value={-3}/>
-                        <Button type={"button"} label="-2" onClick={this.handleClickR} value={-2}/>
-                        <Button type={"button"} label="-1" onClick={this.handleClickR} value={-1}/>
-                        <Button type={"button"} label="0" onClick={this.handleClickR} value={0}/>
-                        <Button type={"button"} label="1" onClick={this.handleClickR} value={1}/>
-                        <Button type={"button"} label="2" onClick={this.handleClickR} value={2}/>
-                        <Button type={"button"} label="3" onClick={this.handleClickR} value={3}/>
-                        <Button type={"button"} label="4" onClick={this.handleClickR} value={4}/>
-                        <div className={"messageR"}>
+                        <Button type={"button"} label="-4" onClick={this.handleClickR} value={-4} style={page.r==-4 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="-3" onClick={this.handleClickR} value={-3} style={page.r==-3 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="-2" onClick={this.handleClickR} value={-2} style={page.r==-2 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="-1" onClick={this.handleClickR} value={-1} style={page.r==-1 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="0" onClick={this.handleClickR} value={0} style={page.r==0 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="1" onClick={this.handleClickR} value={1} style={page.r==1 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="2" onClick={this.handleClickR} value={2} style={page.r==2 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="3" onClick={this.handleClickR} value={3} style={page.r==3 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <Button type={"button"} label="4" onClick={this.handleClickR} value={4} style={page.r==4 ? style.style.myComponents.checkedSmallButton : style.style.myComponents.smallButton}/>
+                        <div className={"messageR"} style={style.style.myComponents.message}>
                             {page.messageR==="" ? <br/> : page.messageR}
                         </div>
                     </Panel>
                     <Panel>
-                        <Button label={"ADD"} type={"submit"} onClick={this.handleClickSubmit}/>
+                        <Button label={"ADD"} type={"submit"} onClick={this.handleClickSubmit} style={style.style.myComponents.button}/>
                     </Panel>
                 </Panel>
             </div>
@@ -118,6 +120,7 @@ class MyForm extends Component {
 const mapStateToProps = store => {
     return {
         page: store.page,
+        style: store.style,
     }
 };
 

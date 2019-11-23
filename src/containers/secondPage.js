@@ -7,7 +7,7 @@ import {MyTable} from "../components/table";
 
 class SecondPage extends Component {
     render() {
-        const {header, page} = this.props;
+        const {header, page, style} = this.props;
         return (
             <div className="secondPage">
                 <Header
@@ -15,10 +15,11 @@ class SecondPage extends Component {
                     secondName={header.secondName}
                     patronymicName={header.patronymicName}
                     variant={header.variant}
-                    topic={header.topic}/>
-                <MyForm/>
-                <Canvas/>
-                <MyTable table={page.table}/>
+                    topic={header.topic}
+                    style={style}/>
+                    <MyForm/>
+                    <Canvas/>
+                    <MyTable table={page.table} style={style}/>
             </div>
         )
     };
@@ -27,8 +28,9 @@ class SecondPage extends Component {
 const mapStateToProps = store => {
     return {
         header: store.header,
-        page: store.page
+        page: store.page,
+        style: store.style,
     }
-}
+};
 
 export default connect(mapStateToProps)(SecondPage)

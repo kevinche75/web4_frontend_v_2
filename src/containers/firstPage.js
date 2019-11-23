@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Header} from "../components/header";
-import { User} from "./user";
+import MyUser from "./user";
 
 class FirstPage extends Component {
+
   render() {
-      const {user, header} = this.props;
+      const {style, header} = this.props;
       return (
           <div className="firstPage">
               <Header
@@ -13,8 +14,10 @@ class FirstPage extends Component {
                   secondName={header.secondName}
                   patronymicName={header.patronymicName}
                   variant={header.variant}
-                  topic={header.topic}/>
-              <User/>
+                  topic={header.topic}
+                  style={style}
+              />
+              <MyUser/>
           </div>
       )
   };
@@ -23,8 +26,9 @@ class FirstPage extends Component {
 const mapStateToProps = store => {
     return {
         user: store.user,
-        header: store.header
+        header: store.header,
+        style: store.style,
     }
-}
+};
 
 export default connect(mapStateToProps)(FirstPage)

@@ -36,9 +36,10 @@ class Canvas extends Component {
     }
 
     render() {
+        const {style} = this.props;
         return (
-            <div className="canvas">
-               <canvas width={270} height={270} ref="canvas" onClick={this.handleClickCanvas}/>
+            <div className="canvas" style={style.style.myCanvas.main}>
+               <canvas width={270} height={270} ref="canvas" onClick={this.handleClickCanvas} style={style.style.myCanvas.canvas}/>
             </div>
         )
     };
@@ -114,6 +115,7 @@ function makeDots(ctx, table, r) {
 const mapStateToProps = store => {
     return {
         page: store.page,
+        style: store.style
     }
 }
 

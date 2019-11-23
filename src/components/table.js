@@ -3,36 +3,36 @@ import { Table, TableCell, TableRow, TableHead } from 'react-toolbox/lib/table'
 
 export class MyTable extends React.Component{
     render() {
-        const { table } = this.props
+        const { table, style } = this.props;
         return (
-            <div className="table">
-                <Table selectable={false}>
+            <div className="table" style={style.style.myTable.main}>
+                <Table selectable={false} style={style.style.myTable.table}>
                     <TableHead>
-                        <TableCell>
+                        <TableCell style={style.style.myTable.tdTh}>
                             X
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={style.style.myTable.tdTh}>
                             Y
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={style.style.myTable.tdTh}>
                             R
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={style.style.myTable.tdTh}>
                             HIT
                         </TableCell>
                     </TableHead>
                     {table.map((item) => (
                         <TableRow>
-                            <TableCell>
+                            <TableCell style={style.style.myTable.tdTh}>
                                 {item.x}
                             </TableCell>
-                            <TableCell>
+                            <TableCell style={style.style.myTable.tdTh}>
                                 {item.y}
                             </TableCell>
-                            <TableCell>
+                            <TableCell style={style.style.myTable.tdTh}>
                                 {item.r}
                             </TableCell>
-                            <TableCell>
+                            <TableCell style={style.style.myTable.tdTh}>
                                 {String(item.hit)}
                             </TableCell>
                         </TableRow>

@@ -1,4 +1,4 @@
-export const styleDeskTop = {
+export const stylePhone = {
     header: {
 
     }

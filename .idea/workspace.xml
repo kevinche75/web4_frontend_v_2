@@ -2,17 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a81e875-cc43-4708-87b9-a3e7beba7d51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/styles/desktop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/phone.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/tablet.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/actions/styleActions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/actions/userActions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/style.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/canvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/canvas.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/firstPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/firstPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/form.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/secondPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/secondPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/desktop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/desktop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/phone.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/phone.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/tablet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/tablet.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +109,9 @@
       <workItem from="1574353416501" duration="10989000" />
       <workItem from="1574400345899" duration="5054000" />
       <workItem from="1574415334944" duration="2124000" />
-      <workItem from="1574430890164" duration="17069000" />
+      <workItem from="1574430890164" duration="20096000" />
+      <workItem from="1574507014447" duration="8788000" />
+      <workItem from="1574519820269" duration="14805000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1574435505628</created>
@@ -110,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574435505628</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Started to make styles">
+      <created>1574457039146</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574457039146</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +148,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Started to make styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started to make styles" />
   </component>
 </project>
