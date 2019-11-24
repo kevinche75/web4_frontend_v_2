@@ -16,7 +16,7 @@ export const styleDeskTop = {
             color: 'white',
             fontSize: '16pt',
             fontWeight: 600,
-            paddingTop: '3%'
+            verticalAlign: 'bottom'
         }
     },
     myComponents: {
@@ -56,12 +56,15 @@ export const styleDeskTop = {
             color: '#34CEE8',
             fontStyle: 'italic',
             fontSize: '10pt',
+        },
+        backPanel: {
+            textAlign:'center'
         }
     },
     user: {
         main: {
-            marginLeft: '38%',
-            marginRight: '38%',
+            marginLeft: '35%',
+            marginRight: '35%',
             marginTop: '9%',
             height: '100%',
             textAlign: 'center',
@@ -69,6 +72,7 @@ export const styleDeskTop = {
             paddingTop: '3%',
             paddingBottom: '1%',
             backgroundColor: '#27282F',
+            width: '30vw'
         }
     },
     myForm: {
@@ -102,7 +106,7 @@ export const styleDeskTop = {
             marginTop: '8vh',
         },
         canvas: {
-            paddingTop: "10%"
+            marginTop: '6%',
         }
     },
     myTable: {
@@ -120,11 +124,9 @@ export const styleDeskTop = {
         },
         table: {
             overflow: 'auto',
-            marginTop: "10%",
+            margin: "10%",
             textAlign: 'center',
             width: '80%',
-            marginLeft: '10%',
-            marginRight: '10%',
             border: '5px solid #16161B',
             borderCollapse: "collapse",
             color: 'white'

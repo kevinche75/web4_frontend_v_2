@@ -7,6 +7,7 @@ import {setStyle} from "../actions/styleActions";
 import {styleDeskTop} from "../styles/desktop";
 import {stylePhone} from "../styles/phone";
 import {styleTablet} from "../styles/tablet";
+import {setCanvasWidth, setDeviceType} from "../actions/pageActions";
 
 class App extends Component {
 
@@ -14,12 +15,18 @@ class App extends Component {
         super(props);
         let width = window.screen.availWidth;
         if(width>=1113){
-            this.props.setStyle(styleDeskTop)
+            this.props.setStyle(styleDeskTop);
+            this.props.setCanvasWidth(window.screen.availWidth*0.20);
+            this.props.setDeviceType('desktop');
         } else {
             if(width<=763){
-                this.props.setStyle(stylePhone)
+                this.props.setStyle(stylePhone);
+                this.props.setCanvasWidth(window.screen.availWidth*0.80);
+                this.props.setDeviceType('phone');
             } else {
-                this.props.setStyle(styleTablet)
+                this.props.setStyle(styleTablet);
+                this.props.setCanvasWidth(window.screen.availWidth*0.20);
+                this.props.setDeviceType('tablet');
             }
         }
     }
@@ -44,6 +51,8 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return{
         setStyle: style => dispatch(setStyle(style)),
+        setCanvasWidth: width => dispatch(setCanvasWidth(width)),
+        setDeviceType: type => dispatch(setDeviceType(type)),
     }
 };
 

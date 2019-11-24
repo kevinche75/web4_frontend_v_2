@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {setMessageR} from "../actions/pageActions";
 
-
 class Canvas extends Component {
     constructor(props) {
         super(props);
@@ -23,8 +22,8 @@ class Canvas extends Component {
     drawPicture(){
         const canvas = this.refs.canvas;
         const ctx = canvas.getContext("2d");
-        drawBackground(ctx, this.props.page.r);
-        makeDots(ctx, this.props.page.table, this.props.page.r)
+        drawBackground(ctx, this.props.page.r, this.refs.canvas.width);
+        makeDots(ctx, this.props.page.table, this.props.page.r, this.refs.canvas.width)
     }
 
     componentDidMount() {
@@ -36,78 +35,93 @@ class Canvas extends Component {
     }
 
     render() {
-        const {style} = this.props;
+        const {style, page} = this.props;
         return (
             <div className="canvas" style={style.style.myCanvas.main}>
-               <canvas width={270} height={270} ref="canvas" onClick={this.handleClickCanvas} style={style.style.myCanvas.canvas}/>
+               <canvas width={page.canvasWidth} height={page.canvasWidth} ref="canvas" onClick={this.handleClickCanvas} style={style.style.myCanvas.canvas}/>
             </div>
         )
     };
 }
 
-function drawBackground(ctx, R) {
-    R = R*25;
+const rCoefficient = 25/270;
+const rectCoefficient = 135.5/270;
+const linCoefficient = 135/270;
+const arrowCoefficientFirst = 130/270;
+const arrowCoefficientSecond = 8/270;
+const arrowCoefficientThird = 140/270;
+const arrowCoefficientForth = 262/270;
+const sketchCoefficient = 10/270;
+const xCoefficientSecond = 150/270;
+const xCoefficientFirst = 260/270;
+const yCoefficient = 145/270;
+const dotRCoefficient = 3/270;
+
+function drawBackground(ctx, R, width) {
+    R = R*rCoefficient*width;
     ctx.fillStyle = "#fff";
-    ctx.fillRect(0, 0, 270, 270);
+    ctx.fillRect(0, 0, width, width);
     ctx.fillStyle = "#66C1FF";
-    ctx.fillRect(135.5 - R/2, 135.5, R/2, R);
+    ctx.fillRect(rectCoefficient*width - R/2, rectCoefficient*width, R/2, R);
     ctx.beginPath();
-    ctx.arc(135.5, 135.5, R/2, Math.PI * 3 / 2, 2 * Math.PI, false);
-    ctx.lineTo(135.5, 135.5);
+    ctx.arc(rectCoefficient*width, rectCoefficient*width, R/2, Math.PI * 3 / 2, 2 * Math.PI, false);
+    ctx.lineTo(rectCoefficient*width, rectCoefficient*width);
     ctx.closePath();
     ctx.fill();
     ctx.beginPath();
-    ctx.moveTo(135, 135);
-    ctx.lineTo(135, 135 - R / 2);
-    ctx.lineTo(135 - R/2, 135);
+    ctx.moveTo(linCoefficient*width, linCoefficient*width);
+    ctx.lineTo(linCoefficient*width, linCoefficient*width - R / 2);
+    ctx.lineTo(linCoefficient*width - R/2, linCoefficient*width);
     ctx.closePath();
     ctx.fill();
 
     ctx.fillStyle = "#000";
     ctx.beginPath();
-    ctx.moveTo(135, 270);
-    ctx.lineTo(135, 0);
-    ctx.moveTo(130, 8);
-    ctx.lineTo(135, 0);
-    ctx.lineTo(140, 8);
+    ctx.moveTo(linCoefficient*width, width);
+    ctx.lineTo(linCoefficient*width, 0);
+    ctx.moveTo(arrowCoefficientFirst*width, arrowCoefficientSecond*width);
+    ctx.lineTo(linCoefficient*width, 0);
+    ctx.lineTo(arrowCoefficientThird*width, arrowCoefficientSecond*width);
 
-    ctx.moveTo(0, 135);
-    ctx.lineTo(270, 135);
-    ctx.moveTo(262, 130);
-    ctx.lineTo(270, 135);
-    ctx.lineTo(262, 140);
-    for (let i = 10; i < 261; i += 25) {
-        ctx.moveTo(i, 130);
-        ctx.lineTo(i, 140);
-        ctx.moveTo(130, i);
-        ctx.lineTo(140, i);
+    ctx.moveTo(0, linCoefficient*width);
+    ctx.lineTo(width, linCoefficient*width);
+    ctx.moveTo(arrowCoefficientForth*width, arrowCoefficientFirst*width);
+    ctx.lineTo(width, linCoefficient*width);
+    ctx.lineTo(arrowCoefficientForth*width, arrowCoefficientThird*width);
+    let jCoefficient = sketchCoefficient*width;
+    for (let i = 0; i < 11; i += 1) {
+        ctx.moveTo(jCoefficient, arrowCoefficientFirst*width);
+        ctx.lineTo(jCoefficient, arrowCoefficientThird*width);
+        ctx.moveTo(arrowCoefficientFirst*width, jCoefficient);
+        ctx.lineTo(arrowCoefficientThird*width, jCoefficient);
+        jCoefficient+=rCoefficient*width;
     }
     ctx.stroke();
     ctx.font = "bold 12px sans-serif";
-    ctx.fillText("x", 260, 145);
-    ctx.fillText("y", 145, 10);
+    ctx.fillText("x", xCoefficientFirst*width, xCoefficientSecond*width);
+    ctx.fillText("y", yCoefficient*width, sketchCoefficient*width);
 }
 
-function paintPoint(ctx, x, y, color){
+function paintPoint(ctx, x, y, color, width){
     ctx.fillStyle = color;
-    let xPoint = x*25 + 135;
-    let yPoint = -y*25+135;
+    let xPoint = x*rCoefficient*width + linCoefficient*width;
+    let yPoint = -y*rCoefficient*width+linCoefficient*width;
     ctx.beginPath();
-    ctx.arc(xPoint, yPoint, 3, 0, Math.PI*2, false);
+    ctx.arc(xPoint, yPoint, dotRCoefficient*width, 0, Math.PI*2, false);
     ctx.closePath();
     ctx.fill();
 }
 
-function makeDots(ctx, table, r) {
+function makeDots(ctx, table, r, width) {
     for(const dot of table){
         if (dot.r == r){
             if(dot.hit){
-                paintPoint(ctx, dot.x, dot.y, 'green')
+                paintPoint(ctx, dot.x, dot.y, 'green', width)
             } else {
-                paintPoint(ctx, dot.x, dot.y, 'red')
+                paintPoint(ctx, dot.x, dot.y, 'red', width)
             }
         } else {
-            paintPoint(ctx, dot.x, dot.y, 'grey')
+            paintPoint(ctx, dot.x, dot.y, 'grey', width)
         }
     }
 }
