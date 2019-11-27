@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {setMessageR} from "../actions/pageActions";
+import axios from "axios";
 
 class Canvas extends Component {
     constructor(props) {
@@ -8,14 +9,27 @@ class Canvas extends Component {
         this.handleClickCanvas = this.handleClickCanvas.bind(this);
     }
 
+    sendPoint(x,y,r){
+        axios.post("/table",{
+            withCredentials: true,
+            x: x,
+            y: y,
+            r: r,
+        })
+            .then(data => console.log(data))
+            .catch(data => console.log(data));
+    }
+
     handleClickCanvas(e){
-        // console.log(e.clientX);
-        // console.log(e.clientY);
         this.props.setMessageR("");
         if(this.props.page.r === 0){
             this.props.setMessageR("You should choose R")
         } else {
-            //TODO отправка на сервер
+            let width = this.refs.canvas.width;
+            let r = this.props.page.r;
+            let x = (e.clientX-linCoefficient*width)/rCoefficient*width;
+            let y = -(e.clientY-linCoefficient*width)/rCoefficient*width;
+            this.sendPoint(x,y,r);
         }
     }
 

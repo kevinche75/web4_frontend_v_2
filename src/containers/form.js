@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Button} from "react-toolbox/lib/button";
 import {Panel} from "react-toolbox/lib/layout";
 import {Input} from "react-toolbox/lib/input";
+import axios from 'axios';
 import {setMessageR, setR, setX, setMessageX, setMessageY, setY} from "../actions/pageActions";
 
 class MyForm extends Component {
@@ -12,7 +13,28 @@ class MyForm extends Component {
         this.handleClickX = this.handleClickX.bind(this);
         this.handleClickSubmit = this.handleClickSubmit.bind(this);
         this.handleChangeY = this.handleChangeY.bind(this);
+        this.getTable();
     }
+
+    getTable(){
+        axios.get("/table",{
+            withCredentials: true,
+        })
+            .then(data => console.log(data))
+            .catch(data => console.log(data));
+    }
+
+    sendPoint(x,y,r){
+        axios.post("/table",{
+            withCredentials: true,
+            x: x,
+            y: y,
+            r: r,
+        })
+            .then(data => console.log(data))
+            .catch(data => console.log(data));
+    }
+
     handleClickR(e){
         if(e.target.value<=0){
             this.props.setMessageR("Radius cann't be below or equal ziro");
@@ -20,12 +42,10 @@ class MyForm extends Component {
         }
         this.props.setMessageR("");
         this.props.setR(e.target.value);
-        //TODO сделать выделение кнопки через CSS
     }
     handleClickX(e){
         this.props.setX(e.target.value);
         this.props.setMessageX("");
-        //TODO сделать выделение кнопки через CSS
     }
     handleChangeY(e){
         this.props.setY(e.trim());
@@ -41,7 +61,6 @@ class MyForm extends Component {
             flag = false;
         }
         let y = this.props.page.y;
-        console.log(y);
         if(y=="" || y===null){
             this.props.setMessageY("You should set Y");
             flag = false;
@@ -61,8 +80,11 @@ class MyForm extends Component {
             flag = false;
             this.props.setMessageR("You should choose R");
         }
-        //TODO отправка на сервер
+        if(flag){
+            this.sendPoint(this.props.page.x, this.props.page.y, this.props.page.r)
+        }
     }
+
     render() {
         const {page,style} = this.props;
         return (

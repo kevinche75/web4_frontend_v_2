@@ -84,8 +84,8 @@ export const styleDeskTop = {
             textAlign: 'center',
             float: 'left',
             height: '50vh',
-            marginLeft: '1.6vw',
-            marginRight: '1.6vw',
+            marginLeft: '1.4vw',
+            marginRight: '1.4vw',
             marginTop: '8vh',
         },
         mainPanel: {
@@ -101,8 +101,8 @@ export const styleDeskTop = {
             textAlign: 'center',
             float: 'left',
             height: '50vh',
-            marginLeft: '1.6vw',
-            marginRight: '1.6vw',
+            marginLeft: '1.4vw',
+            marginRight: '1.4vw',
             marginTop: '8vh',
         },
         canvas: {
@@ -118,8 +118,8 @@ export const styleDeskTop = {
             textAlign: 'center',
             float: 'left',
             height: '50vh',
-            marginLeft: '1.6vw',
-            marginRight: '1.6vw',
+            marginLeft: '1.4vw',
+            marginRight: '1.4vw',
             marginTop: '8vh',
         },
         table: {

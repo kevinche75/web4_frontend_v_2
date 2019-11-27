@@ -14,12 +14,6 @@ const initialState = {
     y: null,
     r: 0,
     table: [
-        {
-            x: 2,
-            y: 3,
-            r: 1,
-            hit: true
-        }
     ],
     messageX: "",
     messageY: "",
