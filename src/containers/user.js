@@ -6,6 +6,7 @@ import axios from 'axios';
 import {setUserMessage} from "../actions/userActions";
 
 export class MyUser extends Component{
+
     constructor(props) {
         super(props);
         this.handleLogin = this.handleLogin.bind(this);
@@ -19,13 +20,19 @@ export class MyUser extends Component{
         if(login===null||login===""||password===null||password===""){
             this.props.setUserMessage("Please, write all information")
         } else {
-            axios.post("/login", {
-                login: login,
-                password: password,
+            let body = new FormData();
+            body.set("username", login);
+            body.set("password", password);
+            axios({
+                url: '/login',
+                method: 'post',
+                data: new URLSearchParams(body),
+                Authorisation: 'Basic ' + btoa(login + ':' + password),
                 withCredentials: true,
             })
                 .then(result => console.log(result))
                 .catch(result => console.log(result));
+            // this.props.history.push("/hello")
         }
     }
 
@@ -36,9 +43,14 @@ export class MyUser extends Component{
         if(login===null||login===""||password===null||password===""){
             this.props.setUserMessage("Please, write all information")
         } else {
-            axios.post("/register", {
-                login: login,
-                password: password
+            let body = new FormData();
+            body.set("username", login);
+            body.set("password", password);
+            axios({
+                method: "post",
+                url: '/register',
+                withCredentials: true,
+                data: body,
             })
                 .then(result => console.log(result))
                 .catch(result => console.log(result));
@@ -73,7 +85,7 @@ const mapDispatchToProps = dispatch => {
     return{
         setUserMessage: userMessage => dispatch(setUserMessage(userMessage)),
     }
-}
+};
 
 export default connect(
     mapStateToProps,

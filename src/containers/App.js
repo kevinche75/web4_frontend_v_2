@@ -32,11 +32,10 @@ class App extends Component {
     }
 
     render() {
-        const {user} = this.props; //TODO ограничить доступ к hello
         return (
                 <BrowserRouter>
-                    <Route exact={true} path="/" component={FirstPage}/>
-                    <Route exact={true} path="/hello" component={SecondPage}/>
+                    <Route exact={true} strict={true} path="/" component={FirstPage}/>
+                    <Route exact={true} strict={true} path="/hello" component={SecondPage}/>
                 </BrowserRouter>
         )
     };

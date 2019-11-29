@@ -10,11 +10,15 @@ class Canvas extends Component {
     }
 
     sendPoint(x,y,r){
-        axios.post("/table",{
+        let body = new FormData();
+        body.set('x', x);
+        body.set('y', y);
+        body.set('r', r);
+        axios({
+            url: '/table',
+            data: body,
             withCredentials: true,
-            x: x,
-            y: y,
-            r: r,
+            method: 'post',
         })
             .then(data => console.log(data))
             .catch(data => console.log(data));
@@ -27,8 +31,11 @@ class Canvas extends Component {
         } else {
             let width = this.refs.canvas.width;
             let r = this.props.page.r;
-            let x = (e.clientX-linCoefficient*width)/rCoefficient*width;
-            let y = -(e.clientY-linCoefficient*width)/rCoefficient*width;
+            console.log(e.pageX-this.refs.canvas.offsetLeft);
+            console.log(linCoefficient*width);
+            console.log(rCoefficient*width);
+            let x = (e.pageX-this.refs.canvas.offsetLeft-linCoefficient*width)/(rCoefficient*width);
+            let y = -(e.pageY-this.refs.canvas.offsetTop-linCoefficient*width)/(rCoefficient*width);
             this.sendPoint(x,y,r);
         }
     }

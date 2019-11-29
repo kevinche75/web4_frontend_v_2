@@ -17,7 +17,9 @@ class MyForm extends Component {
     }
 
     getTable(){
-        axios.get("/table",{
+        axios({
+            url: '/table',
+            method: 'get',
             withCredentials: true,
         })
             .then(data => console.log(data))
@@ -25,11 +27,15 @@ class MyForm extends Component {
     }
 
     sendPoint(x,y,r){
-        axios.post("/table",{
+        let body = new FormData();
+        body.set('x', x);
+        body.set('y', y);
+        body.set('r', r);
+        axios({
+            url: '/table',
+            data: body,
             withCredentials: true,
-            x: x,
-            y: y,
-            r: r,
+            method: 'post',
         })
             .then(data => console.log(data))
             .catch(data => console.log(data));

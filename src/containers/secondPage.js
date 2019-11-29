@@ -7,18 +7,32 @@ import {MyTable} from "../components/table";
 import {Button} from "react-toolbox/lib/button";
 import {Panel} from "react-toolbox/lib/layout";
 import {setOpenedComponent} from "../actions/pageActions";
+import axios from "axios";
+import { Redirect } from 'react-router';
 
 class SecondPage extends Component {
     constructor(props) {
         super(props);
         this.handleButtonClick = this.handleButtonClick.bind(this);
+        this.handleBackButton = this.handleBackButton.bind(this);
     }
+
     handleButtonClick(e){
         this.props.setOpenedComponent(e.target.value);
         console.log(e.target.value);
     }
+
+    handleBackButton(e){
+        axios.get("/logout", {
+            withCredentials: true,
+        })
+            .then(result => console.log(result))
+            .catch(result => console.log(result));
+        this.props.history.push("/")
+    }
+
     render() {
-        const {header, page, style} = this.props;
+        const {header, page, style, history} = this.props;
         return (
             <div className="secondPage">
                 <Header
@@ -52,7 +66,7 @@ class SecondPage extends Component {
                 {page.mobileOpenedComponent==="CANVAS" && <Canvas/>}
                 {page.mobileOpenedComponent==="TABLE" && <MyTable table={page.table} style={style}/>}
                 <Panel style={style.style.myComponents.backPanel}>
-                    <Button label={"BACK"} style={style.style.myComponents.button}/>
+                    <Button label={"BACK"} style={style.style.myComponents.button} onClick={this.handleBackButton}/>
                 </Panel>
             </div>
         )

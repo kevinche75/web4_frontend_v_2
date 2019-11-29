@@ -6,7 +6,7 @@ import MyUser from "./user";
 class FirstPage extends Component {
 
   render() {
-      const {style, header} = this.props;
+      const {style, header, history} = this.props;
       return (
           <div className="firstPage">
               <Header
@@ -17,7 +17,7 @@ class FirstPage extends Component {
                   topic={header.topic}
                   style={style}
               />
-              <MyUser/>
+              <MyUser history={history}/>
           </div>
       )
   };
