@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import Input from 'react-toolbox/lib/input';
 import Button from "react-toolbox/lib/button";
 import {connect} from "react-redux";
-import axios from 'axios';
-import {setUserMessage} from "../actions/userActions";
+import {register, setUserMessage, login} from "../actions/userActions";
+import {setTable} from "../actions/pageActions";
 
 export class MyUser extends Component{
 
     constructor(props) {
         super(props);
+        this.props.setUserMessage("");
         this.handleLogin = this.handleLogin.bind(this);
         this.handleRegister = this.handleRegister.bind(this);
     }
@@ -20,19 +21,11 @@ export class MyUser extends Component{
         if(login===null||login===""||password===null||password===""){
             this.props.setUserMessage("Please, write all information")
         } else {
-            let body = new FormData();
-            body.set("username", login);
-            body.set("password", password);
-            axios({
-                url: '/login',
-                method: 'post',
-                data: new URLSearchParams(body),
-                Authorisation: 'Basic ' + btoa(login + ':' + password),
-                withCredentials: true,
-            })
-                .then(result => console.log(result))
-                .catch(result => console.log(result));
-            // this.props.history.push("/hello")
+            let butch = {
+                username: login,
+                password: password,
+            };
+            this.props.login(butch);
         }
     }
 
@@ -43,17 +36,11 @@ export class MyUser extends Component{
         if(login===null||login===""||password===null||password===""){
             this.props.setUserMessage("Please, write all information")
         } else {
-            let body = new FormData();
-            body.set("username", login);
-            body.set("password", password);
-            axios({
-                method: "post",
-                url: '/register',
-                withCredentials: true,
-                data: body,
-            })
-                .then(result => console.log(result))
-                .catch(result => console.log(result));
+            let butch = {
+                username: login,
+                password: password,
+            };
+            this.props.register(butch);
         }
     }
 
@@ -84,6 +71,9 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return{
         setUserMessage: userMessage => dispatch(setUserMessage(userMessage)),
+        register: butch => dispatch(register(butch)),
+        login: butch => dispatch(login(butch)),
+        setTable: table => dispatch(setTable(table)),
     }
 };
 

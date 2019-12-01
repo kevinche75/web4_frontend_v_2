@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import {setMessageR} from "../actions/pageActions";
-import axios from "axios";
+import {connect} from 'react-redux';
+import {sendPoint, setMessageR} from "../actions/pageActions";
 
 class Canvas extends Component {
     constructor(props) {
@@ -10,18 +9,12 @@ class Canvas extends Component {
     }
 
     sendPoint(x,y,r){
-        let body = new FormData();
-        body.set('x', x);
-        body.set('y', y);
-        body.set('r', r);
-        axios({
-            url: '/table',
-            data: body,
-            withCredentials: true,
-            method: 'post',
-        })
-            .then(data => console.log(data))
-            .catch(data => console.log(data));
+        let butch = {
+            x: x,
+            y: y,
+            r: r,
+        };
+        this.props.sendPoint(butch);
     }
 
     handleClickCanvas(e){
@@ -136,13 +129,13 @@ function paintPoint(ctx, x, y, color, width){
 function makeDots(ctx, table, r, width) {
     for(const dot of table){
         if (dot.r == r){
-            if(dot.hit){
-                paintPoint(ctx, dot.x, dot.y, 'green', width)
+            if(Boolean(dot.inArea)){
+                paintPoint(ctx, Number(dot.x), Number(dot.y), 'green', width)
             } else {
-                paintPoint(ctx, dot.x, dot.y, 'red', width)
+                paintPoint(ctx, Number(dot.x), Number(dot.y), 'red', width)
             }
         } else {
-            paintPoint(ctx, dot.x, dot.y, 'grey', width)
+            paintPoint(ctx, Number(dot.x), Number(dot.y), 'grey', width)
         }
     }
 }
@@ -157,8 +150,9 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return{
         setMessageR: messageR => dispatch(setMessageR(messageR)),
+        sendPoint: butch => dispatch(sendPoint(butch)),
     }
-}
+};
 
 export default connect(
     mapStateToProps,

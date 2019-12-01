@@ -33,7 +33,7 @@ export class MyTable extends React.Component{
                                 {item.r}
                             </TableCell>
                             <TableCell style={style.style.myTable.tdTh}>
-                                {String(item.hit)}
+                                {String(item.inArea)}
                             </TableCell>
                         </TableRow>
                     ))}

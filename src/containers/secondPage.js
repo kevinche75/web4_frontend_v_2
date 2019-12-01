@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { Header} from "../components/header";
+import {connect} from 'react-redux';
+import {Header} from "../components/header";
 import MyForm from "./form";
 import Canvas from "./canvas";
 import {MyTable} from "../components/table";
 import {Button} from "react-toolbox/lib/button";
 import {Panel} from "react-toolbox/lib/layout";
 import {setOpenedComponent} from "../actions/pageActions";
-import axios from "axios";
-import { Redirect } from 'react-router';
+import {Redirect} from 'react-router';
+import {logout} from "../actions/userActions";
 
 class SecondPage extends Component {
     constructor(props) {
@@ -23,18 +23,14 @@ class SecondPage extends Component {
     }
 
     handleBackButton(e){
-        axios.get("/logout", {
-            withCredentials: true,
-        })
-            .then(result => console.log(result))
-            .catch(result => console.log(result));
-        this.props.history.push("/")
+       this.props.logout()
     }
 
     render() {
-        const {header, page, style, history} = this.props;
+        const {header, page, style, user} = this.props;
         return (
             <div className="secondPage">
+                {!user.isLogin && <Redirect to={"/"}/>}
                 <Header
                     firstName={header.firstName}
                     secondName={header.secondName}
@@ -78,14 +74,16 @@ const mapStateToProps = store => {
         header: store.header,
         page: store.page,
         style: store.style,
+        user: store.user,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return{
         setOpenedComponent: component => dispatch(setOpenedComponent(component)),
+        logout: () => dispatch(logout()),
     }
-}
+};
 
 export default connect(
     mapStateToProps,

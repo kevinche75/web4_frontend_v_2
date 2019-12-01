@@ -8,6 +8,7 @@ import {styleDeskTop} from "../styles/desktop";
 import {stylePhone} from "../styles/phone";
 import {styleTablet} from "../styles/tablet";
 import {setCanvasWidth, setDeviceType} from "../actions/pageActions";
+import {setLoginIn} from "../actions/userActions";
 
 class App extends Component {
 
@@ -28,6 +29,11 @@ class App extends Component {
                 this.props.setCanvasWidth(window.screen.availWidth*0.20);
                 this.props.setDeviceType('tablet');
             }
+        }
+        if(localStorage.getItem("loginIn")!=="false" || localStorage.getItem("loginIn")!=="true"){
+            localStorage.setItem("loginIn", "false")
+        } else {
+            this.props.setLoginIn(Boolean(localStorage.getItem("loginIn")))
         }
     }
 
@@ -52,6 +58,7 @@ const mapDispatchToProps = dispatch => {
         setStyle: style => dispatch(setStyle(style)),
         setCanvasWidth: width => dispatch(setCanvasWidth(width)),
         setDeviceType: type => dispatch(setDeviceType(type)),
+        setLoginIn: flag => dispatch(setLoginIn(flag)),
     }
 };
 

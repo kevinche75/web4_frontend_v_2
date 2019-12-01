@@ -4,7 +4,7 @@ export const styleTablet = {
             backgroundColor: '#27282F',
             fontFamily: 'sans-serif',
             textAlign: 'center',
-            height: '30vh',
+            height: 'auto',
         },
         topic: {
             color:'#34CEE8',

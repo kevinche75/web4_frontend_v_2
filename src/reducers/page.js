@@ -6,7 +6,7 @@ import {
     SET_MESSAGE_Y,
     SET_Y,
     SET_CANVAS_WIDTH,
-    SET_DEVICE_TYPE, SET_OPENED_COMPONENT
+    SET_DEVICE_TYPE, SET_OPENED_COMPONENT, SET_TABLE, ADD_DOT
 } from "../actions/pageActions";
 
 const initialState = {
@@ -42,7 +42,11 @@ export function pageReducer(state = initialState, action) {
         case SET_MESSAGE_Y:
             return {...state, messageY: action.payload};
         case SET_CANVAS_WIDTH:
-            return {...state, canvasWidth: action.payload}
+            return {...state, canvasWidth: action.payload};
+        case SET_TABLE:
+            return {...state, table: action.payload};
+        case ADD_DOT:
+            return {...state, table: [...state.table, action.payload]};
         default:
             return state;
     }

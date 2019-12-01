@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {Button} from "react-toolbox/lib/button";
 import {Panel} from "react-toolbox/lib/layout";
 import {Input} from "react-toolbox/lib/input";
-import axios from 'axios';
-import {setMessageR, setR, setX, setMessageX, setMessageY, setY} from "../actions/pageActions";
+import {getTable, sendPoint, setMessageR, setMessageX, setMessageY, setR, setX, setY} from "../actions/pageActions";
 
 class MyForm extends Component {
     constructor(props) {
@@ -13,32 +12,23 @@ class MyForm extends Component {
         this.handleClickX = this.handleClickX.bind(this);
         this.handleClickSubmit = this.handleClickSubmit.bind(this);
         this.handleChangeY = this.handleChangeY.bind(this);
-        this.getTable();
+        this.props.getTable();
+        this.props.setMessageX("");
+        this.props.setMessageY("");
+        this.props.setMessageR("");
     }
 
     getTable(){
-        axios({
-            url: '/table',
-            method: 'get',
-            withCredentials: true,
-        })
-            .then(data => console.log(data))
-            .catch(data => console.log(data));
+       this.props.getTable();
     }
 
     sendPoint(x,y,r){
-        let body = new FormData();
-        body.set('x', x);
-        body.set('y', y);
-        body.set('r', r);
-        axios({
-            url: '/table',
-            data: body,
-            withCredentials: true,
-            method: 'post',
-        })
-            .then(data => console.log(data))
-            .catch(data => console.log(data));
+        let butch = {
+            x: x,
+            y: y,
+            r: r,
+        };
+        this.props.sendPoint(butch);
     }
 
     handleClickR(e){
@@ -160,6 +150,8 @@ const mapDispatchToProps = dispatch => {
         setMessageR: messageR => dispatch(setMessageR(messageR)),
         setMessageX: messageX => dispatch(setMessageX(messageX)),
         setMessageY: messageY => dispatch(setMessageY(messageY)),
+        getTable: () => dispatch(getTable()),
+        sendPoint: butch => dispatch(sendPoint(butch)),
     }
 };
 

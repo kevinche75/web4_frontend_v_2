@@ -4,7 +4,7 @@ export const stylePhone = {
             backgroundColor: '#27282F',
             fontFamily: 'sans-serif',
             textAlign: 'center',
-            height: '20vh',
+            height: 'auto',
         },
         topic: {
             color:'#34CEE8',

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const SET_R = 'SET_R';
 export const SET_X = 'SET_X';
 export const SET_Y = 'SET_Y';
@@ -7,11 +9,57 @@ export const SET_MESSAGE_R = "SET_MESSAGE_R";
 export const SET_CANVAS_WIDTH = "SET_CANVAS_WIDTH";
 export const SET_DEVICE_TYPE = "SET_DEVICE_TYPE";
 export const SET_OPENED_COMPONENT = "SET_OPENED_COMPONENT";
+export const SET_TABLE = "SET_TABLE";
+export const ADD_DOT = "ADD_DOT";
 
 export function setOpenedComponent(component) {
     return{
         type: SET_OPENED_COMPONENT,
         payload: component
+    }
+}
+
+export function getTable() {
+    return dispatch => {
+        axios({
+            url: '/table',
+            method: 'get',
+            withCredentials: true,
+        })
+            .then(data => {
+                console.log(data);
+                dispatch({
+                   type: SET_TABLE,
+                    payload: data.data,
+                })
+            })
+            .catch(data => console.log(data));
+    }
+}
+
+export function sendPoint(butch) {
+    return dispatch => {
+        axios({
+            url: '/table',
+            data: butch,
+            withCredentials: true,
+            method: 'post',
+        })
+            .then(data => {
+                console.log(data);
+                dispatch({
+                    type: ADD_DOT,
+                    payload: data.data,
+                })
+            })
+            .catch(data => console.log(data));
+    }
+}
+
+export function setTable(table) {
+    return{
+        type: SET_TABLE,
+        payload: table,
     }
 }
 
