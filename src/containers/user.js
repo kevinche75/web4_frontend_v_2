@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import Input from 'react-toolbox/lib/input';
 import Button from "react-toolbox/lib/button";
 import {connect} from "react-redux";
-import {register, setUserMessage, login} from "../actions/userActions";
-import {setTable} from "../actions/pageActions";
+import {login, register, setUserMessage} from "../actions/userActions";
 
 export class MyUser extends Component{
 
@@ -73,7 +72,6 @@ const mapDispatchToProps = dispatch => {
         setUserMessage: userMessage => dispatch(setUserMessage(userMessage)),
         register: butch => dispatch(register(butch)),
         login: butch => dispatch(login(butch)),
-        setTable: table => dispatch(setTable(table)),
     }
 };
 

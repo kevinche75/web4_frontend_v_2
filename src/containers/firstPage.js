@@ -10,7 +10,7 @@ class FirstPage extends Component {
       const {style, header, history, user} = this.props;
       return (
           <div className="firstPage">
-              {user.isLogin && <Redirect to={"/hello"}/>}
+              {user.isLogin && <Redirect to={"/~s264433/hello"}/>}
               <Header
                   firstName={header.firstName}
                   secondName={header.secondName}

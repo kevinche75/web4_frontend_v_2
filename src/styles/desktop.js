@@ -121,9 +121,9 @@ export const styleDeskTop = {
             marginLeft: '1.4vw',
             marginRight: '1.4vw',
             marginTop: '8vh',
+            overflow: 'auto',
         },
         table: {
-            overflow: 'auto',
             margin: "10%",
             textAlign: 'center',
             width: '80%',

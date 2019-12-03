@@ -123,9 +123,9 @@ export const styleTablet = {
             marginLeft: '1.6vw',
             marginRight: '1.6vw',
             marginTop: '8vh',
+            overflow: 'auto',
         },
         table: {
-            overflow: 'auto',
             margin: "10%",
             textAlign: 'center',
             width: '80%',

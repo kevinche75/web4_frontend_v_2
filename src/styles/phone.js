@@ -146,11 +146,11 @@ export const stylePhone = {
             marginLeft: '2.5vw',
             marginRight: '2.5vw',
             marginTop: '2.5vh',
+            overflow: 'auto',
         },
         table: {
             marginTop: "5%",
             marginBottom: "5%",
-            overflow: 'auto',
             margin: "10%",
             textAlign: 'center',
             width: '80%',

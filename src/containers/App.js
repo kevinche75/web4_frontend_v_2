@@ -30,18 +30,18 @@ class App extends Component {
                 this.props.setDeviceType('tablet');
             }
         }
-        if(localStorage.getItem("loginIn")!=="false" || localStorage.getItem("loginIn")!=="true"){
-            localStorage.setItem("loginIn", "false")
+        if(localStorage.getItem("loginIn")!=null || localStorage.getItem("loginIn")!=undefined){
+            this.props.setLoginIn(true)
         } else {
-            this.props.setLoginIn(Boolean(localStorage.getItem("loginIn")))
+            this.props.setLoginIn(false)
         }
     }
 
     render() {
         return (
                 <BrowserRouter>
-                    <Route exact={true} strict={true} path="/" component={FirstPage}/>
-                    <Route exact={true} strict={true} path="/hello" component={SecondPage}/>
+                    <Route exact={true} strict={true} path="/~s264433/" component={FirstPage}/>
+                    <Route exact={true} strict={true} path="/~s264433/hello" component={SecondPage}/>
                 </BrowserRouter>
         )
     };

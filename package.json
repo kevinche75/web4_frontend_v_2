@@ -35,5 +35,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "react-app-rewire-disable-chunks": "0.0.1",
+    "react-app-rewired": "^2.1.5"
+  },
+  "homepage": "https://se.ifmo.ru/~s264433/"
 }

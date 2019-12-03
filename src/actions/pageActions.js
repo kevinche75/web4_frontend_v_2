@@ -21,10 +21,15 @@ export function setOpenedComponent(component) {
 
 export function getTable() {
     return dispatch => {
+        let header = localStorage.getItem("loginIn");
+        console.log(header);
         axios({
-            url: '/table',
+            url: 'http://localhost:12600/table',
             method: 'get',
             withCredentials: true,
+            headers: {
+                Authorization: header,
+            },
         })
             .then(data => {
                 console.log(data);
@@ -39,11 +44,14 @@ export function getTable() {
 
 export function sendPoint(butch) {
     return dispatch => {
+        let header = localStorage.getItem("loginIn");
         axios({
-            url: '/table',
+            url: 'http://localhost:12600/table',
             data: butch,
-            withCredentials: true,
             method: 'post',
+            headers: {
+                Authorization: header,
+            },
         })
             .then(data => {
                 console.log(data);
@@ -53,6 +61,15 @@ export function sendPoint(butch) {
                 })
             })
             .catch(data => console.log(data));
+        dispatch({
+            type: SET_X,
+            payload: null,
+        });
+        dispatch({
+            type: SET_Y,
+            payload: null,
+        });
+        document.getElementById("inputY").value = "";
     }
 }
 

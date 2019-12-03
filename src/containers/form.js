@@ -12,14 +12,6 @@ class MyForm extends Component {
         this.handleClickX = this.handleClickX.bind(this);
         this.handleClickSubmit = this.handleClickSubmit.bind(this);
         this.handleChangeY = this.handleChangeY.bind(this);
-        this.props.getTable();
-        this.props.setMessageX("");
-        this.props.setMessageY("");
-        this.props.setMessageR("");
-    }
-
-    getTable(){
-       this.props.getTable();
     }
 
     sendPoint(x,y,r){
@@ -44,7 +36,7 @@ class MyForm extends Component {
         this.props.setMessageX("");
     }
     handleChangeY(e){
-        this.props.setY(e.trim());
+        this.props.setY(e.trim().replace(',','.'));
         this.props.setMessageY("");
     }
     handleClickSubmit(e){
@@ -68,7 +60,7 @@ class MyForm extends Component {
                 y = Number(y);
                 if (!(y > -5 && y < 3)) {
                     flag = false;
-                    this.props.setMessageY("Y should be in area (-3;5)");
+                    this.props.setMessageY("Y should be in area (-5;3)");
                 }
             }
         }
@@ -105,7 +97,7 @@ class MyForm extends Component {
                     <Panel>
                         Set Y(-5;3):
                         <br/>
-                        <Input onChange={this.handleChangeY} maxlength={14} style={style.style.myComponents.input}/>
+                        <Input onChange={this.handleChangeY} maxlength={14} style={style.style.myComponents.input} id={"inputY"}/>
                         <div className={"messageY"} style={style.style.myComponents.message}>
                             {page.messageY==="" ? <br/> : page.messageY}
                         </div>

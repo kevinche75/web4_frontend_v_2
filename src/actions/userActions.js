@@ -7,6 +7,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const SET_SIGN_IN = "SET_SIGN_IN";
+export const SET_NAME = "SET_NAME";
 
 export function setUserMessage(userMessage) {
     return{
@@ -24,7 +25,7 @@ export function setLoginIn(flag) {
 
 export function logout() {
     return dispatch => {
-        axios.get("/logout", {
+        axios.get("http://localhost:12600/logout", {
             withCredentials: true,
         })
             .then(result => {
@@ -39,26 +40,24 @@ export function logout() {
             type: SET_TABLE,
             payload: [],
         });
-        localStorage.setItem("loginIn", "false");
+        localStorage.removeItem("loginIn");
     }
 }
 
 export function login(butch) {
     return dispatch => {
-        let body = new FormData();
-        body.set("username", butch.username);
-        body.set("password", butch.password);
+        let header = 'Basic ' + btoa(butch.username + ':' + butch.password);
         axios({
-            url: '/login',
+            url: 'http://localhost:12600/login',
             method: 'post',
             headers: {
-                Authorization: 'Basic ' + btoa(butch.username + ':' + butch.password)
+                Authorization: header
             },
-            withCredentials: true,
         })
             .then(result => {
                 console.log(result);
                 if (result.status == 200) {
+                    localStorage.setItem("loginIn", header);
                 dispatch({
                     type: LOGIN_SUCCESS,
                     payload: "Welcome!",
@@ -67,7 +66,6 @@ export function login(butch) {
                     type: SET_SIGN_IN,
                     payload: true,
                 });
-                    localStorage.setItem("loginIn", "true");
                 } else {
                     dispatch({
                         type: LOGIN_FAIL,
@@ -89,8 +87,7 @@ export function register(butch) {
     return dispatch => {
         axios({
             method: "post",
-            url: '/register',
-            withCredentials: true,
+            url: 'http://localhost:12600/register',
             data: butch,
         })
             .then(result => {

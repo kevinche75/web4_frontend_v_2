@@ -6,7 +6,16 @@ import Canvas from "./canvas";
 import {MyTable} from "../components/table";
 import {Button} from "react-toolbox/lib/button";
 import {Panel} from "react-toolbox/lib/layout";
-import {setOpenedComponent} from "../actions/pageActions";
+import {
+    getTable,
+    setMessageR,
+    setMessageX,
+    setMessageY,
+    setOpenedComponent,
+    setR,
+    setX,
+    setY
+} from "../actions/pageActions";
 import {Redirect} from 'react-router';
 import {logout} from "../actions/userActions";
 
@@ -15,6 +24,20 @@ class SecondPage extends Component {
         super(props);
         this.handleButtonClick = this.handleButtonClick.bind(this);
         this.handleBackButton = this.handleBackButton.bind(this);
+        this.props.setMessageX("");
+        this.props.setMessageY("");
+        this.props.setMessageR("");
+        this.props.setX(null);
+        this.props.setY(null);
+        this.props.setR(0);
+    }
+
+    getTable(){
+        this.props.getTable();
+    }
+
+    componentDidMount() {
+        this.getTable()
     }
 
     handleButtonClick(e){
@@ -30,7 +53,7 @@ class SecondPage extends Component {
         const {header, page, style, user} = this.props;
         return (
             <div className="secondPage">
-                {!user.isLogin && <Redirect to={"/"}/>}
+                {!user.isLogin && <Redirect to={"/~s264433/"}/>}
                 <Header
                     firstName={header.firstName}
                     secondName={header.secondName}
@@ -82,6 +105,13 @@ const mapDispatchToProps = dispatch => {
     return{
         setOpenedComponent: component => dispatch(setOpenedComponent(component)),
         logout: () => dispatch(logout()),
+        setR: r => dispatch(setR(r)),
+        setX: x => dispatch(setX(x)),
+        setY: y => dispatch(setY(y)),
+        setMessageR: messageR => dispatch(setMessageR(messageR)),
+        setMessageX: messageX => dispatch(setMessageX(messageX)),
+        setMessageY: messageY => dispatch(setMessageY(messageY)),
+        getTable: () => dispatch(getTable()),
     }
 };
 
